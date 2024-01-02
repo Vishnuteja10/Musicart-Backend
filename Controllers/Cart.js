@@ -3,7 +3,7 @@ const CartModel = require("../Models/CartModel");
 const getCartItems = async (req, res) => {
   const { userId } = req.query;
   try {
-    const items = await CartModel.find(userId);
+    const items = await CartModel.find({ userId });
     if (items) {
       res.json({ success: true, message: "cart items found", data: items });
     } else {
@@ -18,7 +18,7 @@ const addToCart = async (req, res) => {
   try {
     const { item } = req.body;
 
-    const product = await CartModel.findById({ _id: item._id });
+    const product = await CartModel.findById(item._id);
     if (product) {
       product.quantity = product.quantity + 1;
       await product.save();

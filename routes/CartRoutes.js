@@ -9,8 +9,8 @@ const VerifyAuthentication = require("../Middlewares/VerifyAuthentication");
 
 router.route("/add-to-cart").post(VerifyAuthentication, addToCart);
 
-router.route("/get-cartitems").get(getCartItems);
+router.route("/get-cartitems/:id").get(getCartItems);
 
-router.route("/clear-cartitems").delete(removeCartItems);
+router.route("/clear-cartitems/:id").delete(removeCartItems);
 
 module.exports = router;

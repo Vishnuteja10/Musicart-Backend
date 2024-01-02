@@ -1,9 +1,11 @@
 const CartModel = require("../Models/CartModel");
 
 const getCartItems = async (req, res) => {
-  const { userId } = req.query;
+  const { id } = req.params;
+
+  console.log("user id", id, req.params);
   try {
-    const items = await CartModel.find({ userId });
+    const items = await CartModel.find({ userId: id });
     if (items) {
       res.json({ success: true, message: "cart items found", data: items });
     } else {
@@ -43,8 +45,9 @@ const addToCart = async (req, res) => {
 
 const removeCartItems = async (req, res) => {
   try {
-    const { userId } = req.query;
-    await CartModel.deleteMany({ userId: userId });
+    const { id } = req.params;
+    console.log("userid in remve cart", userId);
+    await CartModel.deleteMany({ userId: id });
     res.status(200).json({ success: true, data: "cart items cleared" });
   } catch (error) {
     res.status(500).json({ success: false, msg: error.message });

@@ -45,9 +45,7 @@ const addToCart = async (req, res) => {
 
 const removeCartItems = async (req, res) => {
   try {
-    const { id } = req.params;
-    console.log("userid in remve cart", userId);
-    await CartModel.deleteMany({ userId: id });
+    await CartModel.deleteMany({});
     res.status(200).json({ success: true, data: "cart items cleared" });
   } catch (error) {
     res.status(500).json({ success: false, msg: error.message, userId: id });

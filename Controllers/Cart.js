@@ -50,7 +50,7 @@ const removeCartItems = async (req, res) => {
     await CartModel.deleteMany({ userId: id });
     res.status(200).json({ success: true, data: "cart items cleared" });
   } catch (error) {
-    res.status(500).json({ success: false, msg: error.message });
+    res.status(500).json({ success: false, msg: error.message, userId: id });
   }
 };
 

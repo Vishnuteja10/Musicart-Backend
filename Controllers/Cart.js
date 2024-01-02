@@ -18,7 +18,7 @@ const addToCart = async (req, res) => {
   try {
     const { item } = req.body;
 
-    const product = await CartModel.findById(item._id);
+    const product = await CartModel.findById({ _id: item._id });
     if (product) {
       product.quantity = product.quantity + 1;
       await product.save();
